@@ -1,0 +1,52 @@
+--- # By Asu, converted by Synel for Newer 1.3.X, added dynamic loading and unloading feature by Walid
+source_files: [../src/newSfx.S, ../src/newSfx.cpp, ../src/newSfx_dynamicLoadingAndUnloading.cpp, ../src/newSfx_dynamicLoadingAndUnloading.S]
+hooks:
+  - name: SFXHax
+    type: branch_insn
+    branch_type: b
+    src_addr_pal: 0x801951D0        #Called before NewSFXHax, so this patch will load the SFXs
+    target_func: 'SFXHax'
+
+  - name: NewSFXHax
+    type: branch_insn
+    branch_type: b
+    src_addr_pal: 0x80283CE0
+    target_func: 'NewSFXHax'
+
+  # - name: LoadAllSFXs             Breaks the memory of a pretentious game!!!
+    # type: branch_insn
+    # branch_type: bl
+    # src_addr_pal: 0x802D4D50
+    # target_func: 'LoadAllSFXs'
+
+  - name: YoshiSFXFix1
+    type: branch_insn
+    branch_type: bl
+    src_addr_pal: 0x8014FBAC
+    target_func: 'fuckingYoshiStuff(void)'
+
+  - name: YoshiSFXFix2
+    type: branch_insn
+    branch_type: bl
+    src_addr_pal: 0x8014FC6C
+    target_func: 'fuckingYoshiStuff(void)'
+
+##############################################################################
+##############################################################################
+##############################################################################
+##############################################################################
+##############################################################################
+##############################################################################
+##############################################################################
+##############################################################################
+##############################################################################
+##############################################################################
+##############################################################################
+##############################################################################
+##############################################################################
+##############################################################################
+##############################################################################
+#NB: It is essential to free your custom SFX from memory to load more sounds. To do this, write a cond using the 'isSndPlaying' func.
+
+
+#NB2: A potential lag happens when you load a file dynamically (80 ms). This is the price to pay for that feature!!!
