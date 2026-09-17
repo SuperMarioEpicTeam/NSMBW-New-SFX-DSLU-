@@ -55,10 +55,5 @@ void dNewSFXMgr_c::unloadNewSFX(int id) {
 }
  */
 
-//ADDED HERE FOR THE DSLU RELEASE
-namespace SndAudioMgr {
-	extern bool isSndPlaying(int);				//80196740
-}
-
 #endif /* NEWSFX_H */
 
